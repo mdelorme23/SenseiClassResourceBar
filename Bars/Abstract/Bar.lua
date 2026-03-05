@@ -640,7 +640,6 @@ function BarMixin:ApplyLayout(layoutName, force)
     if data.fasterUpdates == nil and defaults.fasterUpdates or data.fasterUpdates then
         self:EnableFasterUpdates()
     else
-        print('slow')
         self:DisableFasterUpdates()
     end
 
