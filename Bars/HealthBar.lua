@@ -90,6 +90,12 @@ function HealthBarMixin:OnLoad()
     self.Frame:RegisterEvent("PET_BATTLE_OPENING_START")
     self.Frame:RegisterEvent("PET_BATTLE_CLOSE")
 
+    local playerClass = select(2, UnitClass("player"))
+
+    if playerClass == "DRUID" then
+        self.Frame:RegisterEvent("UPDATE_SHAPESHIFT_FORM")
+    end
+
 	-- Create the global click-casting registry if it doesn't exist
     if not ClickCastFrames then ClickCastFrames = {} end
 
@@ -125,6 +131,7 @@ function HealthBarMixin:OnEvent(event, ...)
     self._curEvent = event
 
     if event == "PLAYER_ENTERING_WORLD"
+        or event == "UPDATE_SHAPESHIFT_FORM"
         or (event == "PLAYER_SPECIALIZATION_CHANGED" and unit == "player") then
 
         self:ApplyVisibilitySettings()
