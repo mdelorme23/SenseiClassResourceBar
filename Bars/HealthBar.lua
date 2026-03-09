@@ -134,9 +134,7 @@ function HealthBarMixin:OnEvent(event, ...)
         or event == "UPDATE_SHAPESHIFT_FORM"
         or (event == "PLAYER_SPECIALIZATION_CHANGED" and unit == "player") then
 
-        C_Timer.After(0, function()
-            self:ApplyVisibilitySettings()
-        end)
+        RunNextFrame(function() self:ApplyVisibilitySettings() end)
         self:ApplyLayout(nil, true)
         self:UpdateDisplay()
 
