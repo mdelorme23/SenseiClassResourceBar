@@ -454,6 +454,12 @@ function BarMixin:ApplyVisibilitySettings(layoutName, inCombat)
         return
     end
 
+    -- Hide based on role
+    if data.hideHealthOnRole and data.hideHealthOnRole[role] then
+        self:Hide()
+        return
+    end
+
     local isDruidInFlightForm = playerClass == "DRUID" and (formID == DRUID_FLIGHT_FORM or formID == DRUID_TRAVEL_FORM or formID == DRUID_ACQUATIC_FORM)
     if data.hideWhileMountedOrVehicule and (IsMounted() or UnitInVehicle("player") or isDruidInFlightForm) then
         self:Hide()
